@@ -1,4 +1,4 @@
-var combinestuff = [];
+/*var combinestuff = [];
 
 function ajaxCallPost() {
   var postData = '';
@@ -20,12 +20,10 @@ function ajaxCallPost() {
   });
 }
 
-var arrCom;
 
 function ajaxCallComment() {
   var url2 = 'https://jsonplaceholder.typicode.com/comments';
   $.ajax(url2).done(function(dataCom) {
-    arrCom = dataCom;
     var output = '';
     dataCom.forEach(function(dataCom){
       var postId = dataCom.postId;
@@ -36,36 +34,37 @@ function ajaxCallComment() {
     //console.log(output);
   });
 }
-
+*/
 
 
 $(document).ready(function() {
   $('#getPost').on('click', function() {
-    ajaxCallPost();
-    ajaxCallComment();
+    $.getJSON('https://jsonplaceholder.typicode.com/posts?userId=1', function(data) {
+      var postData = data;
+      console.log(postData);
+      for (var i = 1; i <= postData.length; i++) {
+        $.getJSON('https://jsonplaceholder.typicode.com/comments?postId=' + i, function(data) {
+          var commentData = data;
+          console.log(commentData);
+          var output = '';
+          var title, body, postId, button, comId, comment;
+          postData.forEach(function(itemPost) {
+            postId = itemPost.id;
+            title = "<h2>" + itemPost.title + "</h2>" + "<br>";
+            body = "<h3>" + itemPost.body + "</h3>" + "<br>";
+            button = '<button class="btn btn-primary" id="showComment">' + "Show Comment" + "</button>";
+            commentData.forEach(function(itemComment){
+              comId = "<p>" + itemComment.id + "</p>" + "<br>";
+              comment = "<p>" + itemComment.body + "</p>" + "<br>";
+            });
+          });
+          output += title + body + comId + comment + button + "<hr>";
+
+          $('#update').append(output);
+        });
+      }
+
+    });
+
   });
 });
-
-/*
-var arrPost = [];
-var arrCom = [];
-$.getJSON('https://jsonplaceholder.typicode.com/posts', function(data) {
-  for (var i = 0; i < 10; i++) {
-    var object = {};
-    object = data[i];
-    arrPost.push(object);
-  }
-});
-
-$.getJSON('https://jsonplaceholder.typicode.com/comments', function(data) {
-  for (var i = 0; i < data.length; i++) {
-    var object = {};
-    object = data[i];
-    arrCom.push(object)
-  }
-});
-
-
-console.log(arrCom[2]);
-console.log(arrPost);
-*/
