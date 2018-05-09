@@ -15,23 +15,27 @@ $(document).ready(function() {
                 }
               }
             }
-            //console.log(commentData);
-            var title, body, output = '';
-            for (var i in postData) {
-              title = "<h2>" + postData[i].title + "</h2>" + "<br>";
-              body = "<p>" + postData[i].body + "</p>" + "<br>";
-              var comments = postData[i].comments;
-              for (var j in comments) {
-                var com = comments[j].id;
-                console.log(com);
-              }
-              output += title + body + "<hr>";
-            }
-            $('#update').append(output);
           })
+          prosesData(postData);
         });
       };
-
     });
   });
 });
+
+function prosesData(data) {
+  console.log(data);
+  /*var title, body, output, com, totalCom = '';
+  for (var i in data) {
+    title = "<h2>" + data[i].title + "</h2>" + "<br>";
+    body = "<p>" + data[i].body + "</p>" + "<br>";
+    var comments = data[i].comments;
+    for (var j in comments) {
+      com = "<p>" + comments[j].id + "</p>" + "<br>";
+    }
+    console.log(com);
+    output += title + body + totalCom + "<hr>";
+  }
+  console.log(data[0].comments[0].id);
+  $('#update').append(output);*/
+}
