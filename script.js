@@ -15,23 +15,23 @@ $(document).ready(function() {
                 }
               }
             }
+            //console.log(commentData);
+            var title, body, output = '';
+            for (var i in postData) {
+              title = "<h2>" + postData[i].title + "</h2>" + "<br>";
+              body = "<p>" + postData[i].body + "</p>" + "<br>";
+              var comments = postData[i].comments;
+              for (var j in comments) {
+                var com = comments[j].id;
+                console.log(com);
+              }
+              output += title + body + "<hr>";
+            }
+            $('#update').append(output);
           })
         });
       };
 
-      //console.log(commentData);
-      var title, body, output = '';
-      for (var i in postData) {
-        title = "<h2>" + postData[i].title + "</h2>" + "<br>";
-        body = "<p>" + postData[i].body + "</p>" + "<br>";
-        //var comments = postData[i].comments;
-        /*for (var j in comments) {
-          var com = comments[j].id;
-        }*/
-        output += title + body + "<hr>";
-      }
-      $('#update').append(output);
-      console.log(postData[1].comments[0].id);
     });
   });
 });
