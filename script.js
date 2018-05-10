@@ -3,38 +3,57 @@ $(document).ready(function() {
     $.getJSON('https://jsonplaceholder.typicode.com/posts?userId=1', function(data) {
       var postData = data;
       var commentData = [];
-
+      var counter = 0;
       for (var i = 0; i <= postData.length; i++) {
         $.getJSON('https://jsonplaceholder.typicode.com/comments?postId=' + postData[i].id, function(data) {
           $.each(data, function(index, value) {
             commentData.push(value);
-            for (var p in postData) {
-              postData[p].comments = [];
-              for (var c in commentData) {
-                if (postData[p].id == commentData[c].postId) {
-                  postData[p].comments.push(commentData[c]);
-                }
+          });
+          for (var p in postData) {
+            postData[p].comments = [];
+            for (var c in commentData) {
+              if (postData[p].id == commentData[c].postId) {
+                postData[p].comments.push(commentData[c]);
               }
             }
-          });
+          }
+          prosesData(postData[counter]);
+          counter++;
         });
-        prosesData(postData[i]);
       }
     });
   });
 });
 
 function prosesData(data) {
-  console.log(data);
-  var title, body, output, com, totalCom = '';
-  title = "<h2>" + data.title + "</h2>" + "<br>";
-  body = "<p>" + data.body + "</p>" + "<br>";
-  var comments = data.comments;
-  for (var c in comments) {
-    com = "<p>" + comments.id + "</p>" + "<br>";
-  }
+  //console.log(data);
+  var counter = 0;
+  var title, body, output, btn, totalCom = '';
+  title = '<h2 class="title">' + data.title + '</h2>' + "<br>";
+  body = '<p class="post">' + data.body + "</p>" + "<br>";
+  Object.keys(data.comments).forEach(function(key) {
+    totalCom += '<p class="comment">' + data.comments[key].body + '</p>' + '<br>';
+    console.log(counter);
+    //console.log(data.comments.length);
+    if (counter > 3 ) {
+      $('.comment').addClass("asd");
+    }
+    counter++;
+    console.log(counter);
+  })
+  btn = '<button class="btn btn-primary btnCom">' + "Show more comments" + '</button>';
   //console.log(com);
-  output = title + body + com + "<hr>";
+  output = title + body + totalCom + btn + '<hr style="margin-top:50px">';
 
   $('#update').append(output);
+  $('.title').css({
+    "font-weight": "bold",
+    "font-size": "40px !important"
+  });
+  $('.post').css("font-size", "20px");
+  $('.comment').css({
+    "margin-left": "60px",
+
+  });
+  $('.btnCom').css("float","right");
 }
