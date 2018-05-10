@@ -28,36 +28,30 @@ $(document).ready(function() {
 function prosesData(data) {
   //console.log(data);
   var counter = 0;
-  var title, body, output, btn, totalCom = '';
+  var title, body, output, btn, textComment, comments = '';
   title = '<h2 class="title">' + data.title + '</h2>' + "<br>";
   body = '<p class="post">' + data.body + "</p>" + "<br>";
+  textComment = "<h4>" + "Comments: " + "</h4>" + "<br>";
+
   for (var i = 0; i < data.comments.length; i++) {
-    console.log(data.comments[i]);
     if (i > 2) {
-      //totalCom += '<p class="comment hide" id=\'c' + i + '\'>' + data.comments[i].body + '</p>';
-      totalCom += '<p class="comment hide">' + data.comments[i].body + '</p>' + '<br>';
-      $('.comment').add;
+      comments += '<p class="comment hide">' + data.comments[i].body + '</p>' + '<br>';
     } else {
-      //totalCom += '<p class="comment" id=\'c' + i + '\'>' + data.comments[i].body + '</p>';
-      totalCom += '<p class="comment">' + data.comments[i].body + '</p>' + '<br>';
+      comments += '<p class="comment">' + data.comments[i].body + '</p>' + '<br>';
     }
-    $('.btnCom').on('click', function() {
-      $('.comment').removeClass('hide');
-    });
-    btn = '<button class="btn btn-primary btnCom">' + "Show more comments" + '</button>';
     counter++;
   }
-  output = title + body + totalCom + btn + '<hr style="margin-top:50px">';
 
+  btn = '<button class="btn btn-primary btnCom">' + "Show more comments" + '</button>';
+
+  output = '<div>' + title + body + textComment + comments + btn + '<hr style="margin-top:50px">' + '</div>';
+  $('.btnCom').on('click', function() {
+    $(this).parent("div").find(".comment").removeClass("hide")
+  });
   $('#update').append(output);
-  $('.title').css({
-    "font-weight": "bold",
-    "font-size": "40px !important"
-  });
-  $('.post').css("font-size", "20px");
-  $('.comment').css({
-    "margin-left": "60px",
-
-  });
-  $('.btnCom').css("float","right");
 }
+
+/*function showResult() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("update").style.display = "block";
+}*/

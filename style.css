@@ -1,24 +1,82 @@
 .jumbotron {
-    border-radius: 0px !important;
-    background-color: #35d2ad;
+  border-radius: 0px !important;
+  background-color: #35d2ad;
 }
+
 .heading {
-    margin: 0;
-    color: #fff !important;
-    font-family: 'Bowlby One', cursive;
+  margin: 0;
+  color: #fff !important;
+  font-family: 'Bowlby One', cursive;
 }
+
 .shortHr {
-    width: 100px;
-    border-bottom: 2px solid #fff;
+  width: 100px;
+  border-bottom: 2px solid #fff;
 }
 
 i {
-    padding-top: 5px;
-    color: #fff;
-    font-size: 14px;
-    letter-spacing: 2px;
+  padding-top: 5px;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 2px;
 }
 
 #showComment {
   margin-top: 15px;
 }
+
+.title {
+  font-weight: bold;
+  font-size: 40px !important;
+}
+
+.post {
+  font-size: 20px;
+}
+
+.comment {
+  margin-left: 60px;
+}
+
+.btnCom {
+  float: right;
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*#update {
+  display: none;
+}*/
