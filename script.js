@@ -14,9 +14,9 @@ $(document).ready(function() {
                   postData[p].comments.push(commentData[c]);
                 }
               }
+              prosesData(postData[p]);
             }
           })
-          prosesData(postData);
         });
       };
     });
@@ -24,18 +24,17 @@ $(document).ready(function() {
 });
 
 function prosesData(data) {
-  console.log(data);
-  /*var title, body, output, com, totalCom = '';
-  for (var i in data) {
-    title = "<h2>" + data[i].title + "</h2>" + "<br>";
-    body = "<p>" + data[i].body + "</p>" + "<br>";
-    var comments = data[i].comments;
-    for (var j in comments) {
-      com = "<p>" + comments[j].id + "</p>" + "<br>";
-    }
-    console.log(com);
-    output += title + body + totalCom + "<hr>";
+  //console.log(postData);
+  //console.log(data);
+  var title, body, output, com, totalCom = '';
+  title = "<h2>" + data.title + "</h2>" + "<br>";
+  body = "<p>" + data.body + "</p>" + "<br>";
+  var comments = data.comments;
+  for (var j in comments) {
+    com = "<p>" + comments.id + "</p>" + "<br>";
   }
-  console.log(data[0].comments[0].id);
-  $('#update').append(output);*/
+  //console.log(com);
+  output += title + body + "<hr>";
+
+  $('#update').append(output);
 }
