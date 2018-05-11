@@ -5,10 +5,12 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MoBerries Test</title>
+  <title>REST Service Test</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Suez+One" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 
 </head>
@@ -19,13 +21,14 @@
     <div class="row">
       <div class="col-sm-12 jumbotron text-center">
         <h1 class="heading">Get Your Post</h1>
-        <p><i>Get post with jQuery AJAX</i></p>
+        <p><i>JavaScript jQuery call to REST service</i></p>
         <hr class="shortHr" />
         <button class="btn btn-primary" id="getPost">Show Post</button>
       </div>
     </div>
 
     <div class="col-sm-8 col-sm-offset-2 readPost">
+      <div id="loader" style="display:none"></div>
       <div id="update"></div>
     </div>
   </div>

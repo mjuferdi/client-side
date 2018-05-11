@@ -1,29 +1,36 @@
+var myVar;
 $(document).ready(function() {
   $('#getPost').on('click', function() {
-    $.getJSON('https://jsonplaceholder.typicode.com/posts?userId=1', function(data) {
-      var postData = data;
-      var commentData = [];
-      var counter = 0;
-      for (var i = 0; i <= postData.length; i++) {
-        $.getJSON('https://jsonplaceholder.typicode.com/comments?postId=' + postData[i].id, function(data) {
-          $.each(data, function(index, value) {
-            commentData.push(value);
-          });
-          for (var p in postData) {
-            postData[p].comments = [];
-            for (var c in commentData) {
-              if (postData[p].id == commentData[c].postId) {
-                postData[p].comments.push(commentData[c]);
-              }
-            }
-          }
-          prosesData(postData[counter]);
-          counter++;
-        });
-      }
-    });
+    $('#loader').show();
+    myVar = setTimeout(getJsonCall, 3000);
   });
 });
+
+function getJsonCall() {
+  $.getJSON('https://jsonplaceholder.typicode.com/posts?userId=1', function(data) {
+    var postData = data;
+    var commentData = [];
+    var counter = 0;
+    for (var i = 0; i <= postData.length; i++) {
+      $.getJSON('https://jsonplaceholder.typicode.com/comments?postId=' + postData[i].id, function(data) {
+        $.each(data, function(index, value) {
+          commentData.push(value);
+        });
+        for (var p in postData) {
+          postData[p].comments = [];
+          for (var c in commentData) {
+            if (postData[p].id == commentData[c].postId) {
+              postData[p].comments.push(commentData[c]);
+            }
+          }
+        }
+        prosesData(postData[counter]);
+        counter++;
+      });
+    }
+  });
+}
+
 
 function prosesData(data) {
   //console.log(data);
@@ -35,9 +42,9 @@ function prosesData(data) {
 
   for (var i = 0; i < data.comments.length; i++) {
     if (i > 2) {
-      comments += '<p class="comment hide">' + data.comments[i].body + '</p>' + '<br>';
+      comments += '<p class="comment hide">' + '<span class="span-icon"><i class="fas fa-user-circle"></i></span>' + data.comments[i].body + '</p>' + '<br>';
     } else {
-      comments += '<p class="comment">' + data.comments[i].body + '</p>' + '<br>';
+      comments += '<p class="comment">' + '<span class="span-icon"><i class="fas fa-user-circle"></i></span>' + data.comments[i].body + '</p>' + '<br>';
     }
     counter++;
   }
@@ -48,10 +55,12 @@ function prosesData(data) {
   $('.btnCom').on('click', function() {
     $(this).parent("div").find(".comment").removeClass("hide")
   });
+  $('#loader').hide();
   $('#update').append(output);
 }
 
-/*function showResult() {
+function showResult() {
   document.getElementById("loader").style.display = "none";
   document.getElementById("update").style.display = "block";
-}*/
+  getJsonCall();
+}

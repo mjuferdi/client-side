@@ -6,7 +6,7 @@
 .heading {
   margin: 0;
   color: #fff !important;
-  font-family: 'Bowlby One', cursive;
+  font-family: 'Suez One', serif;
 }
 
 .shortHr {
@@ -17,7 +17,20 @@
 i {
   padding-top: 5px;
   color: #fff;
-  font-size: 14px;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.span-icon {
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 3px;
+}
+
+i.fas.fa-user-circle {
+  padding-top: 0;
+  color: #000;
+  font-size: 40px;
   letter-spacing: 2px;
 }
 
@@ -36,6 +49,7 @@ i {
 
 .comment {
   margin-left: 60px;
+  font-style: italic;
 }
 
 .btnCom {
@@ -43,6 +57,7 @@ i {
 }
 
 #loader {
+  margin-top: 50px !important;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -76,7 +91,3 @@ i {
     transform: rotate(360deg);
   }
 }
-
-/*#update {
-  display: none;
-}*/
